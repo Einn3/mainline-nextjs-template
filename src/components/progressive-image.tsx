@@ -13,7 +13,7 @@ export function ProgressiveImage(props: ProgressiveImageProps) {
   useEffect(() => {
     const image = imageRef.current;
     if (image?.complete && image.naturalWidth > 0) {
-      setIsLoaded(true);
+      queueMicrotask(() => setIsLoaded(true));
     }
   }, []);
 
