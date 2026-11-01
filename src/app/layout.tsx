@@ -5,14 +5,7 @@ import type { Metadata } from "next";
 
 import { Footer } from "@/components/blocks/footer";
 import { Navbar } from "@/components/blocks/navbar";
-import { ReadingProgressBar } from "@/components/reading-progress-bar";
-import { ScrollToTop } from "@/components/scroll-to-top";
-import { StyleGlideProvider } from "@/components/styleglide-provider";
 import { ThemeProvider } from "@/components/theme-provider";
-import {
-  VanishLanguageHUD,
-  VanishWrapper,
-} from "@/components/ui/vanish-transition";
 import { LanguageProvider } from "@/context/language-context";
 import { createMetadata, generateSoftwareSchema } from "@/lib/seo";
 import "@/styles/globals.css";
@@ -85,11 +78,6 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        <script
-          async
-          crossOrigin="anonymous"
-          src="https://tweakcn.com/live-preview.min.js"
-        />
       </head>
       <body className={`${dmSans.variable} ${inter.variable} antialiased`}>
         <ThemeProvider
@@ -99,15 +87,9 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <LanguageProvider>
-            <ReadingProgressBar />
-            <StyleGlideProvider />
             <Navbar />
-            <VanishWrapper>
-              <main className="">{children}</main>
-            </VanishWrapper>
+            <main>{children}</main>
             <Footer />
-            <ScrollToTop />
-            <VanishLanguageHUD />
           </LanguageProvider>
         </ThemeProvider>
       </body>
