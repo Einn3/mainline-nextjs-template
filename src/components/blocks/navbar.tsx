@@ -66,6 +66,7 @@ export const Navbar = () => {
             width={94}
             height={18}
             className="dark:invert"
+            loading="eager"
           />
         </Link>
 
