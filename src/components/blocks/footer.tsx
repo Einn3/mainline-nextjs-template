@@ -4,8 +4,8 @@ import Link from "next/link";
 
 import { ArrowUpRight } from "lucide-react";
 
-import { Button } from "@/components/ui/button";
 import { NewsletterForm } from "@/components/blocks/newsletter-form";
+import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/context/language-context";
 
 export function Footer() {
