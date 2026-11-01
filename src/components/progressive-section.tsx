@@ -82,7 +82,7 @@ export function ProgressiveSection({ children, variant }: ProgressiveSectionProp
     if (!section) return;
 
     if (!("IntersectionObserver" in window)) {
-      setIsVisible(true);
+      queueMicrotask(() => setIsVisible(true));
       return;
     }
 
