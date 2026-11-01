@@ -1,11 +1,10 @@
 "use client";
 
-import { ProgressiveImage } from "@/components/progressive-image";
-
 import { ArrowRight } from "lucide-react";
 
 import { DashedLine } from "../dashed-line";
 
+import { ProgressiveImage } from "@/components/progressive-image";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import {
