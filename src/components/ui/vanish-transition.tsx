@@ -1,7 +1,5 @@
 "use client";
 
-import { useEffect, useState } from "react";
-
 import { AnimatePresence, motion } from "motion/react";
 
 import { useLanguage } from "@/context/language-context";
@@ -33,39 +31,10 @@ export function VanishWrapper({
 
 export function VanishLanguageHUD() {
   const { locale, isChanging } = useLanguage();
-  const [showHUD, setShowHUD] = useState(false);
-  const [percent, setPercent] = useState(0);
-
-  useEffect(() => {
-    if (isChanging) {
-      setShowHUD(true);
-      setPercent(0);
-
-      // Fast digit counter from 0 to 100%
-      const start = Date.now();
-      const duration = 450;
-
-      const interval = setInterval(() => {
-        const elapsed = Date.now() - start;
-        const p = Math.min(Math.floor((elapsed / duration) * 100), 100);
-        setPercent(p);
-        if (p >= 100) {
-          clearInterval(interval);
-          setTimeout(() => {
-            setShowHUD(false);
-          }, 350);
-        }
-      }, 20);
-
-      return () => {
-        clearInterval(interval);
-      };
-    }
-  }, [isChanging, locale]);
 
   return (
     <AnimatePresence>
-      {showHUD && (
+      {isChanging && (
         <motion.div
           initial={{ opacity: 0, y: 20, scale: 0.9 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -83,22 +52,18 @@ export function VanishLanguageHUD() {
             <span className="text-muted-foreground font-mono text-[11px] font-medium tracking-wider uppercase">
               {locale === "es" ? "Cambiando idioma" : "Switching language"}
             </span>
-            <div className="flex items-center gap-2">
-              <span className="font-display text-foreground text-sm font-bold">
-                {locale === "es" ? "Español activado" : "English activated"}
-              </span>
-              <span className="text-primary font-mono text-xs font-bold tabular-nums">
-                {percent.toString().padStart(2, "0")}%
-              </span>
-            </div>
+            <span className="font-display text-foreground text-sm font-bold">
+              {locale === "es" ? "Español activado" : "English activated"}
+            </span>
           </div>
 
           {/* Vanish scanning bar */}
           <div className="bg-muted relative h-1.5 w-16 overflow-hidden rounded-full">
             <motion.div
               className="bg-primary h-full rounded-full"
-              style={{ width: `${percent}%` }}
-              transition={{ ease: "linear" }}
+              initial={{ width: "0%" }}
+              animate={{ width: "100%" }}
+              transition={{ duration: 0.45, ease: "linear" }}
             />
           </div>
         </motion.div>
