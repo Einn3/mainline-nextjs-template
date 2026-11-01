@@ -15,7 +15,7 @@ concurrency:
 
 jobs:
   validate:
-    name: Typecheck, lint, and build
+    name: Typecheck, lint, build, browser tests, and Lighthouse
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -38,3 +38,27 @@ jobs:
 
       - name: Production build
         run: npm run build
+
+      - name: Install Playwright Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Browser smoke tests
+        run: npm run test:e2e
+
+      - name: Set up Chrome for Lighthouse
+        uses: browser-actions/setup-chrome@v1
+
+      - name: Run Lighthouse CI
+        run: npx lhci autorun
+
+      - name: Upload test and Lighthouse reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: quality-reports
+          path: |
+            playwright-report/
+            test-results/
+            .lighthouseci/
+          if-no-files-found: ignore
+          retention-days: 14
