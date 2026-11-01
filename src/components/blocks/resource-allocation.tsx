@@ -1,117 +1,133 @@
+"use client";
+
 import Image from "next/image";
 
 import { DashedLine } from "../dashed-line";
 
+import { useLanguage } from "@/context/language-context";
 import { cn } from "@/lib/utils";
 
-const topItems = [
-  {
-    title: "Reusable issue templates.",
-    description:
-      "Draft lightning-fast documents with our Smart Instructions and Templates.",
-    images: [
-      {
-        src: "/resource-allocation/templates.webp",
-        alt: "Issue template interface",
-        width: 495,
-        height: 186,
-      },
-    ],
-    className:
-      "flex-1 [&>.title-container]:mb-5 md:[&>.title-container]:mb-8 xl:[&>.image-container]:translate-x-6 [&>.image-container]:translate-x-2",
-    fade: [""],
-  },
-  {
-    title: "Simplify your stack.",
-    description: "No more Confluence, SharePoint, or Microsoft Word.",
-    images: [
-      { src: "/logos/jira.svg", alt: "Jira logo", width: 48, height: 48 },
-      { src: "/logos/excel.svg", alt: "Excel logo", width: 48, height: 48 },
-      {
-        src: "/logos/notion.svg",
-        alt: "Notion logo",
-        width: 48,
-        height: 48,
-      },
-      { src: "/logos/word.svg", alt: "Word logo", width: 48, height: 48 },
-      {
-        src: "/logos/monday.svg",
-        alt: "Monday logo",
-        width: 48,
-        height: 48,
-      },
-      {
-        src: "/logos/drive.svg",
-        alt: "Google Drive logo",
-        width: 48,
-        height: 48,
-      },
-      {
-        src: "/logos/jira.svg",
-        alt: "Jira logo",
-        width: 48,
-        height: 48,
-      },
-      { src: "/logos/asana.svg", alt: "Asana logo", width: 48, height: 48 },
-    ],
-    className:
-      "flex-1 [&>.title-container]:mb-5 md:[&>.title-container]:mb-8 md:[&>.title-container]:translate-x-2 xl:[&>.title-container]:translate-x-4 [&>.title-container]:translate-x-0",
-    fade: [],
-  },
-];
-
-const bottomItems = [
-  {
-    title: "Graveyard it.",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do.",
-    images: [
-      {
-        src: "/resource-allocation/graveyard.webp",
-        alt: "Graveyard interface",
-        width: 305,
-        height: 280,
-      },
-    ],
-    className:
-      "[&>.title-container]:mb-5 md:[&>.title-container]:mb-8 xl:[&>.image-container]:translate-x-6 [&>.image-container]:translate-x-2",
-    fade: ["bottom"],
-  },
-  {
-    title: "Task discussions.",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod.",
-    images: [
-      {
-        src: "/resource-allocation/discussions.webp",
-        alt: "Task discussions interface",
-        width: 320,
-        height: 103,
-      },
-    ],
-    className:
-      "justify-normal [&>.title-container]:mb-5 md:[&>.title-container]:mb-0 [&>.image-container]:flex-1 md:[&>.image-container]:place-items-center md:[&>.image-container]:-translate-y-3",
-    fade: [""],
-  },
-  {
-    title: "Notifications.",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod.",
-    images: [
-      {
-        src: "/resource-allocation/notifications.webp",
-        alt: "Notifications interface",
-        width: 305,
-        height: 280,
-      },
-    ],
-    className:
-      "[&>.title-container]:mb-5 md:[&>.title-container]:mb-8 xl:[&>.image-container]:translate-x-6 [&>.image-container]:translate-x-2",
-    fade: ["bottom"],
-  },
-];
-
 export const ResourceAllocation = () => {
+  const { t } = useLanguage();
+
+  const topItems = [
+    {
+      title: t("resource.top1_title", "Reusable issue templates."),
+      description: t(
+        "resource.top1_desc",
+        "Draft lightning-fast documents with our Smart Instructions and Templates.",
+      ),
+      images: [
+        {
+          src: "/resource-allocation/templates.webp",
+          alt: "Issue template interface",
+          width: 495,
+          height: 186,
+        },
+      ],
+      className:
+        "flex-1 [&>.title-container]:mb-5 md:[&>.title-container]:mb-8 xl:[&>.image-container]:translate-x-6 [&>.image-container]:translate-x-2",
+      fade: [""],
+    },
+    {
+      title: t("resource.top2_title", "Simplify your stack."),
+      description: t(
+        "resource.top2_desc",
+        "No more Confluence, SharePoint, or Microsoft Word.",
+      ),
+      images: [
+        { src: "/logos/jira.svg", alt: "Jira logo", width: 48, height: 48 },
+        { src: "/logos/excel.svg", alt: "Excel logo", width: 48, height: 48 },
+        {
+          src: "/logos/notion.svg",
+          alt: "Notion logo",
+          width: 48,
+          height: 48,
+        },
+        { src: "/logos/word.svg", alt: "Word logo", width: 48, height: 48 },
+        {
+          src: "/logos/monday.svg",
+          alt: "Monday logo",
+          width: 48,
+          height: 48,
+        },
+        {
+          src: "/logos/drive.svg",
+          alt: "Google Drive logo",
+          width: 48,
+          height: 48,
+        },
+        {
+          src: "/logos/jira.svg",
+          alt: "Jira logo",
+          width: 48,
+          height: 48,
+        },
+        { src: "/logos/asana.svg", alt: "Asana logo", width: 48, height: 48 },
+      ],
+      className:
+        "flex-1 [&>.title-container]:mb-5 md:[&>.title-container]:mb-8 md:[&>.title-container]:translate-x-2 xl:[&>.title-container]:translate-x-4 [&>.title-container]:translate-x-0",
+      fade: [],
+    },
+  ];
+
+  const bottomItems = [
+    {
+      title: t("resource.bot1_title", "Graveyard it."),
+      description: t(
+        "resource.bot1_desc",
+        "Archive deprecated ideas and maintain clean project boards.",
+      ),
+      images: [
+        {
+          src: "/resource-allocation/graveyard.webp",
+          alt: "Graveyard interface",
+          width: 305,
+          height: 280,
+        },
+      ],
+      className:
+        "[&>.title-container]:mb-5 md:[&>.title-container]:mb-8 xl:[&>.image-container]:translate-x-6 [&>.image-container]:translate-x-2",
+      fade: ["bottom"],
+    },
+    {
+      title: t("resource.bot2_title", "Task discussions."),
+      description: t(
+        "resource.bot2_desc",
+        "Keep contextual conversations tied directly to specific tasks.",
+      ),
+      images: [
+        {
+          src: "/resource-allocation/discussions.webp",
+          alt: "Task discussions interface",
+          width: 320,
+          height: 103,
+        },
+      ],
+      className:
+        "justify-normal [&>.title-container]:mb-5 md:[&>.title-container]:mb-0 [&>.image-container]:flex-1 md:[&>.image-container]:place-items-center md:[&>.image-container]:-translate-y-3",
+      fade: [""],
+    },
+    {
+      title: t("resource.bot3_title", "Notifications."),
+      description: t(
+        "resource.bot3_desc",
+        "Stay in the loop with focused, distraction-free updates.",
+      ),
+      images: [
+        {
+          src: "/resource-allocation/notifications.webp",
+          alt: "Notifications interface",
+          width: 305,
+          height: 280,
+        },
+      ],
+      className:
+        "[&>.title-container]:mb-5 md:[&>.title-container]:mb-8 xl:[&>.image-container]:translate-x-6 [&>.image-container]:translate-x-2",
+      fade: ["bottom"],
+    },
+  ];
+
   return (
     <section
       id="resource-allocation"
@@ -119,7 +135,10 @@ export const ResourceAllocation = () => {
     >
       <div className="">
         <h2 className="container text-center text-3xl tracking-tight text-balance sm:text-4xl md:text-5xl lg:text-6xl">
-          Mainline your resource allocation and execution
+          {t(
+            "resource.title",
+            "Mainline your resource allocation and execution",
+          )}
         </h2>
 
         <div className="mt-8 md:mt-12 lg:mt-20">
@@ -161,7 +180,13 @@ export const ResourceAllocation = () => {
 };
 
 interface ItemProps {
-  item: (typeof topItems)[number] | (typeof bottomItems)[number];
+  item: {
+    title: string;
+    description: string;
+    images: { src: string; alt: string; width: number; height: number }[];
+    className?: string;
+    fade: string[];
+  };
   isLast?: boolean;
   className?: string;
 }

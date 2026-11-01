@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 
@@ -8,8 +10,11 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
+import { useLanguage } from "@/context/language-context";
 
 const Login = () => {
+  const { t } = useLanguage();
+
   return (
     <Background>
       <section className="py-28 lg:pt-44 lg:pb-32">
@@ -24,18 +29,24 @@ const Login = () => {
                   height={18}
                   className="mb-7 dark:invert"
                 />
-                <p className="mb-2 text-2xl font-bold">Welcome back</p>
+                <p className="mb-2 text-2xl font-bold">
+                  {t("login.title", "Welcome back")}
+                </p>
                 <p className="text-muted-foreground">
-                  Please enter your details.
+                  {t("login.subtitle", "Please enter your details.")}
                 </p>
               </CardHeader>
               <CardContent>
                 <div className="grid gap-4">
-                  <Input type="email" placeholder="Enter your email" required />
+                  <Input
+                    type="email"
+                    placeholder={t("login.email", "Enter your email")}
+                    required
+                  />
                   <div>
                     <Input
                       type="password"
-                      placeholder="Enter your password"
+                      placeholder={t("login.password", "Enter your password")}
                       required
                     />
                   </div>
@@ -49,25 +60,25 @@ const Login = () => {
                         htmlFor="remember"
                         className="text-sm leading-none font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                       >
-                        Remember me
+                        {t("login.remember", "Remember me")}
                       </label>
                     </div>
                     <a href="#" className="text-primary text-sm font-medium">
-                      Forgot password
+                      {t("login.forgot", "Forgot password")}
                     </a>
                   </div>
                   <Button type="submit" className="mt-2 w-full">
-                    Create an account
+                    {t("login.button", "Sign in")}
                   </Button>
                   <Button variant="outline" className="w-full">
                     <FcGoogle className="mr-2 size-5" />
-                    Sign up with Google
+                    {t("login.google", "Sign in with Google")}
                   </Button>
                 </div>
                 <div className="text-muted-foreground mx-auto mt-8 flex justify-center gap-1 text-sm">
-                  <p>Don&apos;t have an account?</p>
+                  <p>{t("login.no_account", "Don't have an account?")}</p>
                   <Link href="/signup" className="text-primary font-medium">
-                    Sign up
+                    {t("login.signup_link", "Sign up")}
                   </Link>
                 </div>
               </CardContent>

@@ -1,8 +1,11 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 
 import Marquee from "react-fast-marquee";
 
+import { useLanguage } from "@/context/language-context";
 import { cn } from "@/lib/utils";
 
 type Company = {
@@ -14,6 +17,8 @@ type Company = {
 };
 
 export const Logos = () => {
+  const { t } = useLanguage();
+
   const topRowCompanies = [
     {
       name: "Mercury",
@@ -88,10 +93,13 @@ export const Logos = () => {
       <div className="container space-y-10 lg:space-y-16">
         <div className="text-center">
           <h2 className="mb-4 text-xl text-balance md:text-2xl lg:text-3xl">
-            Powering the world's best product teams.
-            <br className="max-md:hidden" />
+            {t("logos.title", "Powering the world's best product teams.")}
+            <br className="max-md:hidden" />{" "}
             <span className="text-muted-foreground">
-              From next-gen startups to established enterprises.
+              {t(
+                "logos.subtitle",
+                "From next-gen startups to established enterprises.",
+              )}
             </span>
           </h2>
         </div>

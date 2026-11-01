@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 
 import { ArrowRight } from "lucide-react";
@@ -13,66 +15,8 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import { useLanguage } from "@/context/language-context";
 import { cn } from "@/lib/utils";
-
-const items = [
-  {
-    quote: "We're misusing Mainline as a CRM and it still works!",
-    author: "Amy Chase",
-    role: "PM",
-    company: "Mercury Finance",
-    image: "/testimonials/amy-chase.webp",
-  },
-  {
-    quote: "I was able to replace 80% of my team with Mainline bots.",
-    author: "Jonas Kotara",
-    role: "Lead Engineer",
-    company: "Mercury Finance",
-    image: "/testimonials/jonas-kotara.webp",
-  },
-  {
-    quote: "Founder Mode is hard enough without having a really nice PM app.",
-    author: "Kevin Yam",
-    role: "Founder",
-    company: "Mercury Finance",
-    image: "/testimonials/kevin-yam.webp",
-  },
-  {
-    quote: "I can use the tool as a substitute from my PM.",
-    author: "Kundo Marta",
-    role: "Founder",
-    company: "Mercury Finance",
-    image: "/testimonials/kundo-marta.webp",
-  },
-  {
-    quote: "We're misusing Mainline as a CRM and it still works!",
-    author: "Amy Chase",
-    role: "PM",
-    company: "Mercury Finance",
-    image: "/testimonials/amy-chase.webp",
-  },
-  {
-    quote: "I was able to replace 80% of my team with Mainline bots.",
-    author: "Jonas Kotara",
-    role: "Lead Engineer",
-    company: "Mercury Finance",
-    image: "/testimonials/jonas-kotara.webp",
-  },
-  {
-    quote: "Founder Mode is hard enough without having a really nice PM app.",
-    author: "Kevin Yam",
-    role: "Founder",
-    company: "Mercury Finance",
-    image: "/testimonials/kevin-yam.webp",
-  },
-  {
-    quote: "I can use the tool as a substitute from my PM.",
-    author: "Kundo Marta",
-    role: "Founder",
-    company: "Mercury Finance",
-    image: "/testimonials/kundo-marta.webp",
-  },
-];
 
 export const Testimonials = ({
   className,
@@ -81,21 +25,88 @@ export const Testimonials = ({
   className?: string;
   dashedLineClassName?: string;
 }) => {
+  const { t } = useLanguage();
+
+  const items = [
+    {
+      quote: t(
+        "testimonials.q1",
+        "We're misusing Mainline as a CRM and it still works!",
+      ),
+      author: "Amy Chase",
+      role: "PM",
+      company: "Mercury Finance",
+      image: "/testimonials/amy-chase.webp",
+    },
+    {
+      quote: t(
+        "testimonials.q2",
+        "I was able to replace 80% of my team with Mainline bots.",
+      ),
+      author: "Jonas Kotara",
+      role: "Lead Engineer",
+      company: "Mercury Finance",
+      image: "/testimonials/jonas-kotara.webp",
+    },
+    {
+      quote: t(
+        "testimonials.q3",
+        "Founder Mode is hard enough without having a really nice PM app.",
+      ),
+      author: "Kevin Yam",
+      role: "Founder",
+      company: "Mercury Finance",
+      image: "/testimonials/kevin-yam.webp",
+    },
+    {
+      quote: t(
+        "testimonials.q4",
+        "I can use the tool as a substitute from my PM.",
+      ),
+      author: "Kundo Marta",
+      role: "Founder",
+      company: "Mercury Finance",
+      image: "/testimonials/kundo-marta.webp",
+    },
+    {
+      quote: t(
+        "testimonials.q1",
+        "We're misusing Mainline as a CRM and it still works!",
+      ),
+      author: "Amy Chase",
+      role: "PM",
+      company: "Mercury Finance",
+      image: "/testimonials/amy-chase.webp",
+    },
+    {
+      quote: t(
+        "testimonials.q2",
+        "I was able to replace 80% of my team with Mainline bots.",
+      ),
+      author: "Jonas Kotara",
+      role: "Lead Engineer",
+      company: "Mercury Finance",
+      image: "/testimonials/jonas-kotara.webp",
+    },
+  ];
+
   return (
     <>
       <section className={cn("overflow-hidden py-28 lg:py-32", className)}>
         <div className="container">
           <div className="space-y-4">
             <h2 className="text-2xl tracking-tight md:text-4xl lg:text-5xl">
-              Trusted by product builders
+              {t("testimonials.title", "Trusted by product builders")}
             </h2>
             <p className="text-muted-foreground max-w-md leading-snug">
-              Mainline is built on the habits that make the best product teams
-              successful: staying focused, moving quickly, and always aiming for
-              high-quality work.
+              {t(
+                "testimonials.desc",
+                "Mainline is built on the habits that make the best product teams successful: staying focused, moving quickly, and always aiming for high-quality work.",
+              )}
             </p>
             <Button variant="outline" className="shadow-md">
-              Read our Customer Stories <ArrowRight className="size-4" />
+              {t("testimonials.cta", "Read our Customer Stories")}{" "}
+              <ArrowRight className="size-4" />
             </Button>
           </div>
 

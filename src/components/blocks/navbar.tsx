@@ -8,6 +8,7 @@ import { usePathname } from "next/navigation";
 
 import { ChevronRight, Github } from "lucide-react";
 
+import { LanguageSwitcher } from "@/components/language-switcher";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { Button } from "@/components/ui/button";
 import {
@@ -18,41 +19,42 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
+import { useLanguage } from "@/context/language-context";
 import { cn } from "@/lib/utils";
-
-const ITEMS = [
-  {
-    label: "Features",
-    href: "#features",
-    dropdownItems: [
-      {
-        title: "Modern product teams",
-        href: "/#feature-modern-teams",
-        description:
-          "Mainline is built on the habits that make the best product teams successful",
-      },
-      {
-        title: "Resource Allocation",
-        href: "/#resource-allocation",
-        description: "Mainline your resource allocation and execution",
-      },
-    ],
-  },
-  { label: "About Us", href: "/about" },
-  { label: "Pricing", href: "/pricing" },
-  { label: "FAQ", href: "/faq" },
-  { label: "Contact", href: "/contact" },
-];
 
 export const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const pathname = usePathname();
+  const { t } = useLanguage();
+
+  const items = [
+    {
+      label: t("nav.features"),
+      href: "#features",
+      dropdownItems: [
+        {
+          title: t("nav.modern_teams"),
+          href: "/#feature-modern-teams",
+          description: t("nav.modern_teams_desc"),
+        },
+        {
+          title: t("nav.resource_allocation"),
+          href: "/#resource-allocation",
+          description: t("nav.resource_allocation_desc"),
+        },
+      ],
+    },
+    { label: t("nav.about"), href: "/about" },
+    { label: t("nav.pricing"), href: "/pricing" },
+    { label: t("nav.faq"), href: "/faq" },
+    { label: t("nav.contact"), href: "/contact" },
+  ];
 
   return (
     <section
       className={cn(
-        "bg-background/70 absolute left-1/2 z-50 w-[min(90%,700px)] -translate-x-1/2 rounded-4xl border backdrop-blur-md transition-all duration-300",
+        "bg-background/70 absolute left-1/2 z-50 w-[min(94%,760px)] -translate-x-1/2 rounded-4xl border backdrop-blur-md transition-all duration-300",
         "top-5 lg:top-12",
       )}
     >
@@ -70,7 +72,7 @@ export const Navbar = () => {
         {/* Desktop Navigation */}
         <NavigationMenu className="max-lg:hidden">
           <NavigationMenuList>
-            {ITEMS.map((link) =>
+            {items.map((link) =>
               link.dropdownItems ? (
                 <NavigationMenuItem key={link.label} className="">
                   <NavigationMenuTrigger className="data-[state=open]:bg-accent/50 bg-transparent! px-1.5">
@@ -117,12 +119,13 @@ export const Navbar = () => {
           </NavigationMenuList>
         </NavigationMenu>
 
-        {/* Auth Buttons */}
-        <div className="flex items-center gap-2.5">
+        {/* Auth Buttons & Controls */}
+        <div className="flex items-center gap-2">
+          <LanguageSwitcher />
           <ThemeToggle />
           <Link href="/login" className="max-lg:hidden">
             <Button variant="outline">
-              <span className="relative z-10">Login</span>
+              <span className="relative z-10">{t("nav.login")}</span>
             </Button>
           </Link>
           <a
@@ -167,7 +170,7 @@ export const Navbar = () => {
         )}
       >
         <nav className="divide-border flex flex-1 flex-col divide-y">
-          {ITEMS.map((link) =>
+          {items.map((link) =>
             link.dropdownItems ? (
               <div key={link.label} className="py-4 first:pt-0 last:pb-0">
                 <button

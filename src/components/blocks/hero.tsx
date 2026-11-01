@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 
 import {
@@ -10,49 +12,66 @@ import {
 
 import { DashedLine } from "@/components/dashed-line";
 import { Button } from "@/components/ui/button";
-
-const features = [
-  {
-    title: "Tailored workflows",
-    description: "Track progress across custom issue flows for your team.",
-    icon: CircleDot,
-  },
-  {
-    title: "Cross-team projects",
-    description: "Collaborate across teams and departments.",
-    icon: Blend,
-  },
-  {
-    title: "Milestones",
-    description: "Break projects down into concrete phases.",
-    icon: Diamond,
-  },
-  {
-    title: "Progress insights",
-    description: "Track scope, velocity, and progress over time.",
-    icon: ChartNoAxesColumn,
-  },
-];
+import { useLanguage } from "@/context/language-context";
 
 export const Hero = () => {
+  const { t } = useLanguage();
+
+  const features = [
+    {
+      title: t("hero.f1_title", "Tailored workflows"),
+      description: t(
+        "hero.f1_desc",
+        "Track progress across custom issue flows for your team.",
+      ),
+      icon: CircleDot,
+    },
+    {
+      title: t("hero.f2_title", "Cross-team projects"),
+      description: t(
+        "hero.f2_desc",
+        "Collaborate across teams and departments.",
+      ),
+      icon: Blend,
+    },
+    {
+      title: t("hero.f3_title", "Milestones"),
+      description: t(
+        "hero.f3_desc",
+        "Break projects down into concrete phases.",
+      ),
+      icon: Diamond,
+    },
+    {
+      title: t("hero.f4_title", "Progress insights"),
+      description: t(
+        "hero.f4_desc",
+        "Track scope, velocity, and progress over time.",
+      ),
+      icon: ChartNoAxesColumn,
+    },
+  ];
+
   return (
     <section className="py-28 lg:py-32 lg:pt-44">
       <div className="container flex flex-col justify-between gap-8 md:gap-14 lg:flex-row lg:gap-20">
         {/* Left side - Main content */}
         <div className="flex-1">
           <h1 className="text-foreground max-w-160 text-3xl tracking-tight md:text-4xl lg:text-5xl xl:whitespace-nowrap">
-            Mainline Next.js template
+            {t("hero.title", "Mainline Next.js template")}
           </h1>
 
           <p className="text-muted-foreground text-1xl mt-5 md:text-3xl">
-            Mainline is an open-source website template built with shadcn/ui,
-            Tailwind 4 & Next.js
+            {t(
+              "hero.description",
+              "Mainline is an open-source website template built with shadcn/ui, Tailwind 4 & Next.js",
+            )}
           </p>
 
           <div className="mt-8 flex flex-wrap items-center gap-4 lg:flex-nowrap">
             <Button asChild>
               <a href="https://github.com/shadcnblocks/mainline-nextjs-template">
-                Get template
+                {t("hero.get_template", "Get template")}
               </a>
             </Button>
             <Button
@@ -64,7 +83,7 @@ export const Hero = () => {
                 href="https://shadcnblocks.com"
                 className="max-w-56 truncate text-start md:max-w-none"
               >
-                Built by shadcnblocks.com
+                {t("hero.built_by", "Built by shadcnblocks.com")}
                 <ArrowRight className="stroke-3" />
               </a>
             </Button>

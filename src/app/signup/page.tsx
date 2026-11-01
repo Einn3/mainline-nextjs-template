@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 
@@ -7,8 +9,11 @@ import { Background } from "@/components/background";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
+import { useLanguage } from "@/context/language-context";
 
 const Signup = () => {
+  const { t } = useLanguage();
+
   return (
     <Background>
       <section className="py-28 lg:pt-44 lg:pb-32">
@@ -23,37 +28,50 @@ const Signup = () => {
                   height={18}
                   className="mb-7 dark:invert"
                 />
-                <p className="mb-2 text-2xl font-bold">Start your free trial</p>
+                <p className="mb-2 text-2xl font-bold">
+                  {t("signup.title", "Start your free trial")}
+                </p>
                 <p className="text-muted-foreground">
-                  Sign up in less than 2 minutes.
+                  {t("signup.subtitle", "Sign up in less than 2 minutes.")}
                 </p>
               </CardHeader>
               <CardContent>
                 <div className="grid gap-4">
-                  <Input type="text" placeholder="Enter your name" required />
-                  <Input type="email" placeholder="Enter your email" required />
+                  <Input
+                    type="text"
+                    placeholder={t("signup.name", "Enter your name")}
+                    required
+                  />
+                  <Input
+                    type="email"
+                    placeholder={t("signup.email", "Enter your email")}
+                    required
+                  />
                   <div>
                     <Input
                       type="password"
-                      placeholder="Enter your password"
+                      placeholder={t("signup.password", "Enter your password")}
                       required
                     />
                     <p className="text-muted-foreground mt-1 text-sm">
-                      Must be at least 8 characters.
+                      {t(
+                        "signup.password_hint",
+                        "Must be at least 8 characters.",
+                      )}
                     </p>
                   </div>
                   <Button type="submit" className="mt-2 w-full">
-                    Create an account
+                    {t("signup.button", "Create an account")}
                   </Button>
                   <Button variant="outline" className="w-full">
                     <FcGoogle className="mr-2 size-5" />
-                    Sign up with Google
+                    {t("signup.google", "Sign up with Google")}
                   </Button>
                 </div>
                 <div className="text-muted-foreground mx-auto mt-8 flex justify-center gap-1 text-sm">
-                  <p>Already have an account?</p>
+                  <p>{t("signup.has_account", "Already have an account?")}</p>
                   <Link href="/login" className="text-primary font-medium">
-                    Log in
+                    {t("signup.login_link", "Log in")}
                   </Link>
                 </div>
               </CardContent>

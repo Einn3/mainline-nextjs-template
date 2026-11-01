@@ -1,4 +1,5 @@
 "use client";
+
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Check } from "lucide-react";
 import { motion } from "motion/react";
@@ -26,11 +27,14 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
+import { useLanguage } from "@/context/language-context";
 import { formSchema } from "@/lib/form-schema";
 
 type Schema = z.infer<typeof formSchema>;
 
 export function ContactForm() {
+  const { t } = useLanguage();
+
   const form = useForm<Schema>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -42,20 +46,20 @@ export function ContactForm() {
       agree: false,
     } as unknown as Schema,
   });
+
   const formAction = useAction(serverAction, {
     onSuccess: () => {
-      // TODO: show success message
       form.reset();
     },
-    onError: () => {
-      // TODO: show error message
-    },
+    onError: () => {},
   });
+
   const handleSubmit = form.handleSubmit(async (data: Schema) => {
     formAction.execute(data);
   });
 
   const { isExecuting, hasSucceeded } = formAction;
+
   if (hasSucceeded) {
     return (
       <div className="w-full gap-2 rounded-md border p-2 sm:p-5 md:p-8">
@@ -79,10 +83,13 @@ export function ContactForm() {
             <Check className="size-8" />
           </motion.div>
           <h2 className="mb-2 text-center text-2xl font-bold text-pretty">
-            Thank you
+            {t("contact.thank_you", "Thank you")}
           </h2>
           <p className="text-muted-foreground text-center text-lg text-pretty">
-            Form submitted successfully, we will get back to you soon
+            {t(
+              "contact.success_message",
+              "Form submitted successfully, we will get back to you soon",
+            )}
           </p>
         </motion.div>
       </div>
@@ -101,7 +108,7 @@ export function ContactForm() {
           rules={{ required: true }}
           render={({ field }) => (
             <FormItem className="w-full">
-              <FormLabel>Full name * </FormLabel>
+              <FormLabel>{t("contact.full_name", "Full name *")}</FormLabel>
               <FormControl>
                 <Input
                   type="text"
@@ -110,10 +117,12 @@ export function ContactForm() {
                     const val = e.target.value;
                     field.onChange(val);
                   }}
-                  placeholder="First and last name"
+                  placeholder={t(
+                    "contact.full_name_ph",
+                    "First and last name",
+                  )}
                 />
               </FormControl>
-
               <FormMessage />
             </FormItem>
           )}
@@ -124,19 +133,20 @@ export function ContactForm() {
           rules={{ required: true }}
           render={({ field }) => (
             <FormItem className="w-full">
-              <FormLabel>Email address * </FormLabel>
+              <FormLabel>
+                {t("contact.email", "Email address *")}
+              </FormLabel>
               <FormControl>
                 <Input
-                  type="text"
+                  type="email"
                   value={field.value}
                   onChange={(e) => {
                     const val = e.target.value;
                     field.onChange(val);
                   }}
-                  placeholder="me@company.com"
+                  placeholder={t("contact.email_ph", "me@company.com")}
                 />
               </FormControl>
-
               <FormMessage />
             </FormItem>
           )}
@@ -147,7 +157,7 @@ export function ContactForm() {
           rules={{ required: false }}
           render={({ field }) => (
             <FormItem className="w-full">
-              <FormLabel>Company name </FormLabel>
+              <FormLabel>{t("contact.company", "Company name")}</FormLabel>
               <FormControl>
                 <Input
                   type="text"
@@ -156,10 +166,9 @@ export function ContactForm() {
                     const val = e.target.value;
                     field.onChange(val);
                   }}
-                  placeholder="Company name"
+                  placeholder={t("contact.company_ph", "Company name")}
                 />
               </FormControl>
-
               <FormMessage />
             </FormItem>
           )}
@@ -178,11 +187,15 @@ export function ContactForm() {
             ];
             return (
               <FormItem className="w-full">
-                <FormLabel>Number of employees </FormLabel>
+                <FormLabel>
+                  {t("contact.employees", "Number of employees")}
+                </FormLabel>
                 <Select onValueChange={field.onChange} value={field.value}>
                   <FormControl>
                     <SelectTrigger className="w-full">
-                      <SelectValue placeholder="e.g. 11-50" />
+                      <SelectValue
+                        placeholder={t("contact.employees_ph", "e.g. 11-50")}
+                      />
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
@@ -193,7 +206,6 @@ export function ContactForm() {
                     ))}
                   </SelectContent>
                 </Select>
-
                 <FormMessage />
               </FormItem>
             );
@@ -206,15 +218,17 @@ export function ContactForm() {
           rules={{ required: true }}
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Your message * </FormLabel>
+              <FormLabel>{t("contact.message", "Your message *")}</FormLabel>
               <FormControl>
                 <Textarea
                   {...field}
-                  placeholder="Write your message"
+                  placeholder={t(
+                    "contact.message_ph",
+                    "Write your message",
+                  )}
                   className="resize-none"
                 />
               </FormControl>
-
               <FormMessage />
             </FormItem>
           )}
@@ -233,16 +247,19 @@ export function ContactForm() {
                 />
               </FormControl>
               <div className="space-y-1 leading-none">
-                <FormLabel>I agree to the terms and conditions</FormLabel>
-
+                <FormLabel>
+                  {t("contact.agree", "I agree to the terms and conditions")}
+                </FormLabel>
                 <FormMessage />
               </div>
             </FormItem>
           )}
         />
         <div className="flex w-full items-center justify-end pt-3">
-          <Button className="rounded-lg" size="sm">
-            {isExecuting ? "Submitting..." : "Submit"}
+          <Button className="rounded-lg cursor-pointer" size="sm">
+            {isExecuting
+              ? t("contact.submitting", "Submitting...")
+              : t("contact.submit", "Submit")}
           </Button>
         </div>
       </form>

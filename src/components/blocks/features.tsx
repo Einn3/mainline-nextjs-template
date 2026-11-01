@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 
@@ -6,23 +8,32 @@ import { ChevronRight } from "lucide-react";
 import { DashedLine } from "../dashed-line";
 
 import { Card, CardContent } from "@/components/ui/card";
-
-const items = [
-  {
-    title: "Purpose-built for product development",
-    image: "/features/triage-card.svg",
-  },
-  {
-    title: "Manage projects end-to-end",
-    image: "/features/cycle-card.svg",
-  },
-  {
-    title: "Build momentum and healthy habits",
-    image: "/features/overview-card.svg",
-  },
-];
+import { useLanguage } from "@/context/language-context";
 
 export const Features = () => {
+  const { t } = useLanguage();
+
+  const items = [
+    {
+      title: t(
+        "features.item1",
+        "Purpose-built for product development",
+      ),
+      image: "/features/triage-card.svg",
+    },
+    {
+      title: t("features.item2", "Manage projects end-to-end"),
+      image: "/features/cycle-card.svg",
+    },
+    {
+      title: t(
+        "features.item3",
+        "Build momentum and healthy habits",
+      ),
+      image: "/features/overview-card.svg",
+    },
+  ];
+
   return (
     <section id="feature-modern-teams" className="pb-28 lg:pb-32">
       <div className="container">
@@ -30,19 +41,20 @@ export const Features = () => {
         <div className="relative flex items-center justify-center">
           <DashedLine className="text-muted-foreground" />
           <span className="bg-muted text-muted-foreground absolute px-3 font-mono text-sm font-medium tracking-wide max-md:hidden">
-            MEASURE TWICE. CUT ONCE.
+            {t("features.tagline", "MEASURE TWICE. CUT ONCE.")}
           </span>
         </div>
 
         {/* Content */}
         <div className="mx-auto mt-10 grid max-w-4xl items-center gap-3 md:gap-0 lg:mt-24 lg:grid-cols-2">
           <h2 className="text-2xl tracking-tight md:text-4xl lg:text-5xl">
-            Made for modern product teams
+            {t("features.title", "Made for modern product teams")}
           </h2>
           <p className="text-muted-foreground leading-snug">
-            Mainline is built on the habits that make the best product teams
-            successful: staying focused, moving quickly, and always aiming for
-            high-quality work.
+            {t(
+              "features.desc",
+              "Mainline is built on the habits that make the best product teams successful: staying focused, moving quickly, and always aiming for high-quality work.",
+            )}
           </p>
         </div>
 
@@ -64,9 +76,7 @@ export const Features = () => {
 
                   <Link
                     href="#"
-                    className={
-                      "group flex items-center justify-between gap-4 pe-4 pt-4 md:pe-6 md:pt-6"
-                    }
+                    className="group flex items-center justify-between gap-4 pe-4 pt-4 md:pe-6 md:pt-6"
                   >
                     <h3 className="font-display max-w-60 text-2xl leading-tight font-bold tracking-tight">
                       {item.title}
