@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import { ProgressiveImage } from "@/components/progressive-image";
 import Link from "next/link";
 
 import { ChevronRight } from "lucide-react";
@@ -65,7 +65,7 @@ export const Features = () => {
               <div key={i} className="flex flex-1 max-md:flex-col">
                 <div className="flex-1 p-4 pe-0! md:p-6">
                   <div className="relative aspect-[1.28/1] overflow-hidden">
-                    <Image
+                    <ProgressiveImage
                       src={item.image}
                       alt={`${item.title} interface`}
                       fill
