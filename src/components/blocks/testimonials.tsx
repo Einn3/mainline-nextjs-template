@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import { ProgressiveImage } from "@/components/progressive-image";
 
 import { ArrowRight } from "lucide-react";
 
@@ -127,7 +127,7 @@ export const Testimonials = ({
                     <Card className="bg-muted h-full overflow-hidden border-none">
                       <CardContent className="flex h-full flex-col p-0">
                         <div className="relative h-[288px] lg:h-[328px]">
-                          <Image
+                          <ProgressiveImage
                             src={testimonial.image}
                             alt={testimonial.author}
                             fill
