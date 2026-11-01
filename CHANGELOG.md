@@ -11,6 +11,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added GitHub Actions CI to run TypeScript, ESLint, and production build checks on pushes and pull requests.
 
 ### Changed
+- Removed production preview tooling and global decorative animation mounts from the root layout to reduce initial JavaScript and main-thread work without changing the LCP hero or SEO markup.
+- Replaced the mobile logo marquee with native, swipeable CSS overflow so `react-fast-marquee` is not included in the initial client bundle.
+- Removed duplicate testimonial cards to reduce initial DOM, image work, and hydration.
 - Split linting into a non-mutating `lint` check and an explicit `lint:fix` autofix command.
 - Added a `typecheck` script using TypeScript's no-emit mode.
 
