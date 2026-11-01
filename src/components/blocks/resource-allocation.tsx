@@ -1,9 +1,8 @@
 "use client";
 
-import { ProgressiveImage } from "@/components/progressive-image";
-
 import { DashedLine } from "../dashed-line";
 
+import { ProgressiveImage } from "@/components/progressive-image";
 import { useLanguage } from "@/context/language-context";
 import { cn } from "@/lib/utils";
 
