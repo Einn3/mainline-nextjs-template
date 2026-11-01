@@ -20,9 +20,11 @@ import { cn } from "@/lib/utils";
 export const Testimonials = ({
   className,
   dashedLineClassName,
+  emblaActive = true,
 }: {
   className?: string;
   dashedLineClassName?: string;
+  emblaActive?: boolean;
 }) => {
   const { t } = useLanguage();
 
@@ -94,6 +96,7 @@ export const Testimonials = ({
               opts={{
                 align: "start",
                 loop: true,
+                active: emblaActive,
               }}
               className="w-full"
             >
