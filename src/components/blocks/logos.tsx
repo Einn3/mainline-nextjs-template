@@ -1,11 +1,11 @@
 "use client";
 
-import { ProgressiveImage } from "@/components/progressive-image";
 import Link from "next/link";
 
 import Marquee from "react-fast-marquee";
 
-import { useLanguage } from "@/context/language-context";
+import { ProgressiveImage } from "@/components/progressive-image";
+import { useLanguage from "@/context/language-context";
 import { cn } from "@/lib/utils";
 
 type Company = {
