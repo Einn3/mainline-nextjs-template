@@ -1,6 +1,7 @@
 "use client";
 
 import { lazy, Suspense, useEffect, useRef, useState } from "react";
+
 import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 
 import { DashedLine } from "../dashed-line";
