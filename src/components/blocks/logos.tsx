@@ -2,8 +2,6 @@
 
 import Link from "next/link";
 
-import Marquee from "react-fast-marquee";
-
 import { ProgressiveImage } from "@/components/progressive-image";
 import { useLanguage } from "@/context/language-context";
 import { cn } from "@/lib/utils";
@@ -112,7 +110,6 @@ export const Logos = () => {
           <LogoRow
             companies={bottomRowCompanies}
             gridClassName="grid-cols-5"
-            direction="right"
           />
         </div>
       </div>
@@ -123,10 +120,9 @@ export const Logos = () => {
 type LogoRowProps = {
   companies: Company[];
   gridClassName: string;
-  direction?: "left" | "right";
 };
 
-const LogoRow = ({ companies, gridClassName, direction }: LogoRowProps) => {
+const LogoRow = ({ companies, gridClassName }: LogoRowProps) => {
   return (
     <>
       {/* Desktop static version */}
@@ -151,26 +147,23 @@ const LogoRow = ({ companies, gridClassName, direction }: LogoRowProps) => {
         </div>
       </div>
 
-      {/* Mobile marquee version */}
-      <div className="md:hidden">
-        <Marquee direction={direction} pauseOnHover>
-          {companies.map((company, index) => (
-            <Link
-              href={company.href}
-              target="_blank"
-              key={index}
-              className="mx-8 inline-block transition-opacity hover:opacity-70"
-            >
-              <ProgressiveImage
-                src={company.logo}
-                alt={`${company.name} logo`}
-                width={company.width}
-                height={company.height}
-                className="object-contain"
-              />
-            </Link>
-          ))}
-        </Marquee>
+      <div className="flex snap-x snap-mandatory gap-12 overflow-x-auto px-8 pb-2 md:hidden">
+        {companies.map((company) => (
+          <Link
+            href={company.href}
+            target="_blank"
+            key={company.name}
+            className="snap-center shrink-0 transition-opacity hover:opacity-70"
+          >
+            <ProgressiveImage
+              src={company.logo}
+              alt={`${company.name} logo`}
+              width={company.width}
+              height={company.height}
+              className="object-contain"
+            />
+          </Link>
+        ))}
       </div>
     </>
   );
