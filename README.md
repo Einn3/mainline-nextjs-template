@@ -1,6 +1,6 @@
 # Mainline Next.js Template
 
-Mainline is a responsive product and marketing website built with Next.js 15, React 19, Tailwind CSS 4, and shadcn/ui. This fork extends the original template with English and Spanish content, interactive language transitions, newsletter signup UI, and expanded SEO metadata.
+Mainline is a responsive product and marketing website built with Next.js 16.4.3, React 19.3.1, Tailwind CSS 4, and shadcn/ui. This fork extends the original template with English and Spanish content, interactive language transitions, newsletter signup UI, and expanded SEO metadata.
 
 - [Live demo](https://mainline-nextjs-template.vercel.app/)
 - [Template documentation](https://docs.shadcnblocks.com/templates/getting-started)
@@ -11,7 +11,7 @@ Mainline is a responsive product and marketing website built with Next.js 15, Re
 
 ## Getting Started
 
-Install the dependencies and start the development server:
+Use Node.js 26.13.0 LTS (pinned in .nvmrc; Next.js 16 requires Node.js 20.9.0 or newer). Install the dependencies and start the development server:
 
 ```bash
 npm install
@@ -27,12 +27,12 @@ Open [http://localhost:3000](http://localhost:3000) to view the site.
 | `npm run dev` | Start the Next.js development server on port 3000. |
 | `npm run build` | Create a production build. |
 | `npm run start` | Serve the production build. Run `npm run build` first. |
-| `npm run lint` | Run the configured Next.js lint command with automatic fixes. |
+| `npm run lint` | Run ESLint with automatic fixes. |
 | `npm run format` | Format project files with Prettier. |
 
 ## Technology
 
-- **Next.js 15 App Router** and **React 19**
+- **Node.js 26.13.0 LTS**, **Next.js 16.4.3 App Router**, and **React 19.3.1**
 - **TypeScript** and **Tailwind CSS 4**
 - **shadcn/ui** and Radix UI primitives
 - **Motion** animations, including animated transitions and counters
