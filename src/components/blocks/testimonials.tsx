@@ -67,26 +67,6 @@ export const Testimonials = ({
       company: "Mercury Finance",
       image: "/testimonials/kundo-marta.webp",
     },
-    {
-      quote: t(
-        "testimonials.q1",
-        "We're misusing Mainline as a CRM and it still works!",
-      ),
-      author: "Amy Chase",
-      role: "PM",
-      company: "Mercury Finance",
-      image: "/testimonials/amy-chase.webp",
-    },
-    {
-      quote: t(
-        "testimonials.q2",
-        "I was able to replace 80% of my team with Mainline bots.",
-      ),
-      author: "Jonas Kotara",
-      role: "Lead Engineer",
-      company: "Mercury Finance",
-      image: "/testimonials/jonas-kotara.webp",
-    },
   ];
 
   return (
