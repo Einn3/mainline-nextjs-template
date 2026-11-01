@@ -1,7 +1,8 @@
 "use client";
 
-import Image from "next/image";
 import { useEffect, useRef, useState, type ComponentProps } from "react";
+
+import Image from "next/image";
 
 type ProgressiveImageProps = ComponentProps<typeof Image>;
 
@@ -24,6 +25,7 @@ export function ProgressiveImage(props: ProgressiveImageProps) {
     >
       <Image
         {...props}
+        alt={props.alt ?? ""}
         ref={imageRef}
         onLoad={(event) => {
           setIsLoaded(true);
