@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.5.0] - 2026-10-31
+
+### Changed
+- **Framework and runtime upgrades**: Updated Next.js, @next/mdx, and eslint-config-next to 16.4.3; React and React DOM to 19.3.1; and @types/react, @types/react-dom, and @types/node to 19.3.0, 19.3.0, and 26.6.6 respectively.
+- **Node.js support**: Pinned Node.js 26.13.0 LTS in `.nvmrc` and documented the Next.js minimum runtime requirement (Node.js 20.9.0+).
+- **Lint command**: Replaced the removed `next lint` command with ESLint CLI while preserving automatic fixes.
+
 ## [1.4.0] - 2026-10-31
 
 ### Added
