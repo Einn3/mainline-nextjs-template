@@ -5,12 +5,12 @@ import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 
 import { DashedLine } from "../dashed-line";
 
-import { Button } from "@/components/ui/button";
 import {
   TESTIMONIAL_SLIDE_CLASS,
   TestimonialCard,
   type TestimonialItem,
 } from "@/components/blocks/testimonial-card";
+import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/context/language-context";
 import { cn } from "@/lib/utils";
 
