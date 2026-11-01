@@ -23,3 +23,35 @@ test("main routes respond successfully", async ({ page }) => {
     expect(response!.status(), `Unexpected status for ${route}`).toBeLessThan(400);
   }
 });
+
+test("testimonials carousel responds to next and previous controls", async ({ page }) => {
+  await page.goto("/");
+  const carousel = page.locator('[aria-roledescription="carousel"]').first();
+  await carousel.scrollIntoViewIfNeeded();
+
+  const firstSlide = carousel.locator('[aria-roledescription="slide"]').first();
+  const track = firstSlide.locator("xpath=..");
+  const initialStyle = await track.getAttribute("style");
+
+  await carousel.getByRole("button", { name: "Next slide" }).click();
+  await expect.poll(() => track.getAttribute("style")).not.toBe(initialStyle);
+
+  await carousel.getByRole("button", { name: "Previous slide" }).click();
+  await expect.poll(() => track.getAttribute("style")).toBe(initialStyle);
+});
+
+test("FAQ accordion expands and collapses an answer", async ({ page }) => {
+  await page.goto("/faq");
+
+  const question = page
+    .getByRole("button", {
+      name: "How do I update my account without breaking my laptop?",
+    })
+    .first();
+
+  await question.click();
+  await expect(question).toHaveAttribute("aria-expanded", "true");
+
+  await question.click();
+  await expect(question).toHaveAttribute("aria-expanded", "false");
+});
