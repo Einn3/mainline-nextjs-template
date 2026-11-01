@@ -141,8 +141,11 @@ export const Testimonials = ({
     }
 
     if (typeof IntersectionObserver === "undefined") {
-      setShouldLoadCarousel(true);
-      return;
+      const frameId = requestAnimationFrame(() => {
+        setShouldLoadCarousel(true);
+      });
+
+      return () => cancelAnimationFrame(frameId);
     }
 
     const observer = new IntersectionObserver(
