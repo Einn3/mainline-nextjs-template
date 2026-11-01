@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+- Added GitHub Actions CI to run TypeScript, ESLint, and production build checks on pushes and pull requests.
+
+### Changed
+- Split linting into a non-mutating `lint` check and an explicit `lint:fix` autofix command.
+- Added a `typecheck` script using TypeScript's no-emit mode.
+
+### Pending validation
+- A package-manager lockfile is still required for reproducible installs. CI currently uses `npm install` until a real lockfile can be generated and committed.
+- CI results must be reviewed after the workflow runs.
+
 ### Fixed
 - Added `src/mdx-components.tsx` with the required App Router MDX component hook.
 
