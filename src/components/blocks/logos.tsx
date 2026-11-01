@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import { ProgressiveImage } from "@/components/progressive-image";
 import Link from "next/link";
 
 import Marquee from "react-fast-marquee";
@@ -139,7 +139,7 @@ const LogoRow = ({ companies, gridClassName, direction }: LogoRowProps) => {
         >
           {companies.map((company, index) => (
             <Link href={company.href} target="_blank" key={index}>
-              <Image
+              <ProgressiveImage
                 src={company.logo}
                 alt={`${company.name} logo`}
                 width={company.width}
@@ -161,7 +161,7 @@ const LogoRow = ({ companies, gridClassName, direction }: LogoRowProps) => {
               key={index}
               className="mx-8 inline-block transition-opacity hover:opacity-70"
             >
-              <Image
+              <ProgressiveImage
                 src={company.logo}
                 alt={`${company.name} logo`}
                 width={company.width}
