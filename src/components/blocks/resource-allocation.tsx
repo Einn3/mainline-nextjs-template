@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import { ProgressiveImage } from "@/components/progressive-image";
 
 import { DashedLine } from "../dashed-line";
 
@@ -218,7 +218,7 @@ const Item = ({ item, isLast, className }: ItemProps) => {
                   key={j}
                   className="bg-background grid aspect-square size-16 place-items-center rounded-2xl p-2 lg:size-20"
                 >
-                  <Image
+                  <ProgressiveImage
                     src={image.src}
                     alt={image.alt}
                     width={image.width}
@@ -236,7 +236,7 @@ const Item = ({ item, isLast, className }: ItemProps) => {
                   key={j}
                   className="bg-background grid aspect-square size-16 place-items-center rounded-2xl lg:size-20"
                 >
-                  <Image
+                  <ProgressiveImage
                     src={image.src}
                     alt={image.alt}
                     width={image.width}
@@ -252,7 +252,7 @@ const Item = ({ item, isLast, className }: ItemProps) => {
       ) : (
         <div className="image-container grid grid-cols-1 gap-4">
           {item.images.map((image, j) => (
-            <Image
+            <ProgressiveImage
               key={j}
               src={image.src}
               alt={image.alt}
