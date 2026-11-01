@@ -1,12 +1,12 @@
 "use client";
 
-import { ProgressiveImage } from "@/components/progressive-image";
 import Link from "next/link";
 
 import { ChevronRight } from "lucide-react";
 
 import { DashedLine } from "../dashed-line";
 
+import { ProgressiveImage } from "@/components/progressive-image";
 import { Card, CardContent } from "@/components/ui/card";
 import { useLanguage } from "@/context/language-context";
 
