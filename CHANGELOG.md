@@ -23,6 +23,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 - Added `src/mdx-components.tsx` with the required App Router MDX component hook.
+- Rebuilt application and updated Next.js route manifests (`app-paths-manifest.json`) to register and serve the `/perf-no-embla` diagnostic route.
 
 ## [1.5.0] - 2026-10-31
 
