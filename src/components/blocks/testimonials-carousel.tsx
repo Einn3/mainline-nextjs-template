@@ -1,18 +1,18 @@
 "use client";
 
 import {
+  TESTIMONIAL_SLIDE_CLASS,
+  TestimonialCard,
+  type TestimonialItem,
+} from "./testimonial-card";
+
+import {
   Carousel,
   CarouselContent,
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-
-import {
-  TESTIMONIAL_SLIDE_CLASS,
-  TestimonialCard,
-  type TestimonialItem,
-} from "./testimonial-card";
 
 export function TestimonialsCarousel({
   items,
