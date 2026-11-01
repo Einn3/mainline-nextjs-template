@@ -6,20 +6,33 @@ import { Logos } from "@/components/blocks/logos";
 import { Pricing } from "@/components/blocks/pricing";
 import { ResourceAllocation } from "@/components/blocks/resource-allocation";
 import { Testimonials } from "@/components/blocks/testimonials";
+import { ProgressiveSection } from "@/components/progressive-section";
 
 export default function Home() {
   return (
     <>
       <Background className="via-muted to-muted/80">
         <Hero />
-        <Logos />
-        <Features />
-        <ResourceAllocation />
+        <ProgressiveSection variant="logos">
+          <Logos />
+        </ProgressiveSection>
+        <ProgressiveSection variant="features">
+          <Features />
+        </ProgressiveSection>
+        <ProgressiveSection variant="resources">
+          <ResourceAllocation />
+        </ProgressiveSection>
       </Background>
-      <Testimonials />
+      <ProgressiveSection variant="testimonials">
+        <Testimonials />
+      </ProgressiveSection>
       <Background variant="bottom">
-        <Pricing />
-        <FAQ />
+        <ProgressiveSection variant="pricing">
+          <Pricing />
+        </ProgressiveSection>
+        <ProgressiveSection variant="faq">
+          <FAQ />
+        </ProgressiveSection>
       </Background>
     </>
   );
