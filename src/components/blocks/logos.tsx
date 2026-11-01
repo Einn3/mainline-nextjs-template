@@ -5,7 +5,7 @@ import Link from "next/link";
 import Marquee from "react-fast-marquee";
 
 import { ProgressiveImage } from "@/components/progressive-image";
-import { useLanguage from "@/context/language-context";
+import { useLanguage } from "@/context/language-context";
 import { cn } from "@/lib/utils";
 
 type Company = {
