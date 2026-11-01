@@ -80,9 +80,11 @@ function StaticTestimonialsCarousel({
 export const Testimonials = ({
   className,
   dashedLineClassName,
+  emblaActive = true,
 }: {
   className?: string;
   dashedLineClassName?: string;
+  emblaActive?: boolean;
 }) => {
   const { t } = useLanguage();
   const carouselViewportRef = useRef<HTMLDivElement>(null);
@@ -134,7 +136,7 @@ export const Testimonials = ({
   useEffect(() => {
     const target = carouselViewportRef.current;
 
-    if (!target) {
+    if (!emblaActive || !target) {
       return;
     }
 
@@ -156,7 +158,7 @@ export const Testimonials = ({
     observer.observe(target);
 
     return () => observer.disconnect();
-  }, []);
+  }, [emblaActive]);
 
   return (
     <>
