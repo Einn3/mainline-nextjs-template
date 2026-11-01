@@ -20,34 +20,22 @@ export const Hero = () => {
   const features = [
     {
       title: t("hero.f1_title", "Tailored workflows"),
-      description: t(
-        "hero.f1_desc",
-        "Track progress across custom issue flows for your team.",
-      ),
+      description: t("hero.f1_desc", "Track progress across custom issue flows for your team."),
       icon: CircleDot,
     },
     {
       title: t("hero.f2_title", "Cross-team projects"),
-      description: t(
-        "hero.f2_desc",
-        "Collaborate across teams and departments.",
-      ),
+      description: t("hero.f2_desc", "Collaborate across teams and departments."),
       icon: Blend,
     },
     {
       title: t("hero.f3_title", "Milestones"),
-      description: t(
-        "hero.f3_desc",
-        "Break projects down into concrete phases.",
-      ),
+      description: t("hero.f3_desc", "Break projects down into concrete phases."),
       icon: Diamond,
     },
     {
       title: t("hero.f4_title", "Progress insights"),
-      description: t(
-        "hero.f4_desc",
-        "Track scope, velocity, and progress over time.",
-      ),
+      description: t("hero.f4_desc", "Track scope, velocity, and progress over time."),
       icon: ChartNoAxesColumn,
     },
   ];
@@ -55,19 +43,16 @@ export const Hero = () => {
   return (
     <section className="py-28 lg:py-32 lg:pt-44">
       <div className="container flex flex-col justify-between gap-8 md:gap-14 lg:flex-row lg:gap-20">
-        {/* Left side - Main content */}
         <div className="flex-1">
           <h1 className="text-foreground max-w-160 text-3xl tracking-tight md:text-4xl lg:text-5xl xl:whitespace-nowrap">
             {t("hero.title", "Mainline Next.js template")}
           </h1>
-
           <p className="text-muted-foreground text-1xl mt-5 md:text-3xl">
             {t(
               "hero.description",
               "Mainline is an open-source website template built with shadcn/ui, Tailwind 4 & Next.js",
             )}
           </p>
-
           <div className="mt-8 flex flex-wrap items-center gap-4 lg:flex-nowrap">
             <Button asChild>
               <a href="https://github.com/shadcnblocks/mainline-nextjs-template">
@@ -90,28 +75,17 @@ export const Hero = () => {
           </div>
         </div>
 
-        {/* Right side - Features */}
         <div className="relative flex flex-1 flex-col justify-center space-y-5 max-lg:pt-10 lg:pl-10">
-          <DashedLine
-            orientation="vertical"
-            className="absolute top-0 left-0 max-lg:hidden"
-          />
-          <DashedLine
-            orientation="horizontal"
-            className="absolute top-0 lg:hidden"
-          />
+          <DashedLine orientation="vertical" className="absolute top-0 left-0 max-lg:hidden" />
+          <DashedLine orientation="horizontal" className="absolute top-0 lg:hidden" />
           {features.map((feature) => {
             const Icon = feature.icon;
             return (
               <div key={feature.title} className="flex gap-2.5 lg:gap-5">
                 <Icon className="text-foreground mt-1 size-4 shrink-0 lg:size-5" />
                 <div>
-                  <h2 className="font-text text-foreground font-semibold">
-                    {feature.title}
-                  </h2>
-                  <p className="text-muted-foreground max-w-76 text-sm">
-                    {feature.description}
-                  </p>
+                  <h2 className="font-text text-foreground font-semibold">{feature.title}</h2>
+                  <p className="text-muted-foreground max-w-76 text-sm">{feature.description}</p>
                 </div>
               </div>
             );
@@ -123,8 +97,10 @@ export const Hero = () => {
         <div className="relative h-[793px] w-full">
           <Image
             src="/hero.webp"
-            alt="hero"
+            alt="Mainline project management dashboard preview"
             fill
+            preload
+            sizes="(max-width: 1024px) 100vw, 1220px"
             className="rounded-2xl object-cover object-left-top shadow-lg max-lg:rounded-tr-none"
           />
         </div>
