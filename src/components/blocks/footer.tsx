@@ -20,7 +20,7 @@ export function Footer() {
   ];
 
   const social = [
-    { name: "Xwitter", href: "https://x.com/ausrobdev" },
+    { name: "X", href: "https://x.com/ausrobdev" },
     { name: "LinkedIn", href: "#" },
   ];
 
