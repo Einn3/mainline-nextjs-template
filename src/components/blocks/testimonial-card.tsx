@@ -1,7 +1,7 @@
 "use client";
 
-import { Card, CardContent } from "@/components/ui/card";
 import { ProgressiveImage } from "@/components/progressive-image";
+import { Card, CardContent } from "@/components/ui/card";
 
 export type TestimonialItem = {
   quote: string;
