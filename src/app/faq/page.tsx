@@ -4,6 +4,14 @@ import { Background } from "@/components/background";
 import { FAQ } from "@/components/blocks/faq";
 import { Testimonials } from "@/components/blocks/testimonials";
 import { DashedLine } from "@/components/dashed-line";
+import { createMetadata } from "@/lib/seo";
+
+export const metadata = createMetadata({
+  title: "Frequently Asked Questions",
+  description:
+    "Find answers to common questions about Mainline features, account management, support availability, and integrations.",
+  pathname: "/faq",
+});
 
 const Page = () => {
   return (

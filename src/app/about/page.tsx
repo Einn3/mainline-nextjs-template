@@ -3,6 +3,14 @@ import About from "@/components/blocks/about";
 import { AboutHero } from "@/components/blocks/about-hero";
 import { Investors } from "@/components/blocks/investors";
 import { DashedLine } from "@/components/dashed-line";
+import { createMetadata } from "@/lib/seo";
+
+export const metadata = createMetadata({
+  title: "About Us - Democratising Quality Software",
+  description:
+    "Learn about our mission, dedicated team, and why Mainline powers project management for modern software builders.",
+  pathname: "/about",
+});
 
 export default function AboutPage() {
   return (
