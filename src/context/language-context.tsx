@@ -496,7 +496,7 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     try {
       const saved = localStorage.getItem("app_language") as Locale | null;
       if (saved === "en" || saved === "es") {
-        setLocaleState(saved);
+        queueMicrotask(() => setLocaleState(saved));
       }
     } catch {
       // Ignore storage errors in SSR or restricted privacy settings
