@@ -47,7 +47,7 @@ Open [http://localhost:3000](http://localhost:3000) to view the site.
 - English and Spanish translations across the main pages and shared interface.
 - Animated language switching with a dissolve/rebuild transition and progress HUD.
 - Light and dark themes, responsive layouts, and animated counters for statistics and pricing.
-- Newsletter signup form with email validation and loading/success feedback.
+- Newsletter signup demo with client-side email validation and simulated loading/success feedback; no mailing-list service is connected yet.
 - Reading progress indicator and a floating back-to-top button.
 - Shared navigation, hero, feature, logo, resource allocation, testimonial, pricing, FAQ, and footer sections.
 - Centralized SEO metadata with page titles and descriptions, canonical URLs, Open Graph and social cards, and SoftwareApplication JSON-LD.
