@@ -26,7 +26,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: npm
 
       - name: Download and verify Muse patch
         shell: bash
@@ -44,7 +43,7 @@ jobs:
           git status --short
 
       - name: Install dependencies
-        run: npm ci
+        run: npm install --no-package-lock --no-audit --no-fund
 
       - name: TypeScript, lint, and production build
         run: |
