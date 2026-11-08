@@ -1,0 +1,81 @@
+name: Apply Muse performance patch
+
+on:
+  push:
+    branches:
+      - automation/apply-muse-perf
+
+permissions:
+  contents: write
+
+jobs:
+  apply-and-verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Check out current master
+        uses: actions/checkout@v4
+        with:
+          ref: master
+          fetch-depth: 0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Download and verify Muse patch
+        shell: bash
+        run: |
+          curl -fL --retry 3 --retry-delay 2 \
+            'https://muse.ai/files/637404362792824/3256856084501362/9thy9j76lnz52h38zya522ak/perf-lcp-hero.patch' \
+            -o /tmp/perf-lcp-hero.patch
+          echo 'a9eb6a17bfd53352a1bfc46eb51dae68724d573b8e3d1d7353386f62e46e444c  /tmp/perf-lcp-hero.patch' | sha256sum -c -
+
+      - name: Apply exact patch
+        run: |
+          git apply --check /tmp/perf-lcp-hero.patch
+          git apply /tmp/perf-lcp-hero.patch
+          git diff --check
+          git status --short
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: TypeScript, lint, and production build
+        run: |
+          npm run typecheck
+          npm run lint
+          npm run build
+
+      - name: Install Playwright Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Run end-to-end tests against custom server
+        shell: bash
+        run: |
+          node server.js > /tmp/mainline-server.log 2>&1 &
+          SERVER_PID=$!
+          trap 'kill "$SERVER_PID" 2>/dev/null || true' EXIT
+          for attempt in $(seq 1 60); do
+            if curl -fsS http://127.0.0.1:3000/ >/dev/null; then
+              break
+            fi
+            sleep 2
+          done
+          curl -fsS http://127.0.0.1:3000/ >/dev/null
+          CI=false npx playwright test
+          kill "$SERVER_PID" 2>/dev/null || true
+          wait "$SERVER_PID" 2>/dev/null || true
+          trap - EXIT
+
+      - name: Commit verified changes to master
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git commit -m "perf: optimize hero LCP and defer below-fold JavaScript"
+          git push origin HEAD:master
