@@ -1,9 +1,6 @@
 name: Apply Muse performance patch
 
 on:
-  push:
-    branches:
-      - automation/apply-muse-perf
   pull_request:
     branches:
       - master
@@ -67,7 +64,7 @@ jobs:
             sleep 2
           done
           curl -fsS http://127.0.0.1:3000/ >/dev/null
-          CI=false npx playwright test
+          env -u CI npx playwright test
           kill "$SERVER_PID" 2>/dev/null || true
           wait "$SERVER_PID" 2>/dev/null || true
           trap - EXIT
