@@ -4,15 +4,17 @@
   "author": "Shadcnblocks.com",
   "private": true,
   "scripts": {
-    "dev": "next dev -p 3000 -H 0.0.0.0",
+    "dev": "HOSTNAME=0.0.0.0 node server.js",
+    "dev:next": "next dev -p 3000 -H 0.0.0.0",
     "build": "next build",
-    "start": "next start",
+    "start": "HOSTNAME=0.0.0.0 node server.js",
+    "serve": "HOSTNAME=0.0.0.0 node server.js",
     "lint": "eslint .",
     "format": "prettier -w .",
     "lint:fix": "eslint . --fix",
     "typecheck": "tsc --noEmit",
     "test:e2e": "playwright test",
-    "start:custom": "node server.js"
+    "start:custom": "HOSTNAME=0.0.0.0 node server.js"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",

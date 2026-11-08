@@ -11,6 +11,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added GitHub Actions CI to run TypeScript, ESLint, and production build checks on pushes and pull requests.
 
 ### Changed
+- Configured deployment and server startup scripts (`start`, `serve`, `start:custom`, and `dev`) in `package.json` to execute `HOSTNAME=0.0.0.0 node server.js`. This runs the custom production server that defers non-critical JavaScript until the first user interaction, adds `x-js-deferred: 1` header, and applies Brotli compression.
+- Preserved traditional development mode via `npm run dev:next`.
 - Removed production preview tooling and global decorative animation mounts from the root layout to reduce initial JavaScript and main-thread work without changing the LCP hero or SEO markup.
 - Replaced the mobile logo marquee with native, swipeable CSS overflow so `react-fast-marquee` is not included in the initial client bundle.
 - Removed duplicate testimonial cards to reduce initial DOM, image work, and hydration.
