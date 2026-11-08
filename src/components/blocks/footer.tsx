@@ -1,15 +1,20 @@
-"use client";
-
 import Link from "next/link";
 
 import { ArrowUpRight } from "lucide-react";
 
 import { NewsletterForm } from "@/components/blocks/newsletter-form";
 import { Button } from "@/components/ui/button";
-import { useLanguage } from "@/context/language-context";
+import { translate, type Locale } from "@/lib/translations";
 
-export function Footer() {
-  const { t } = useLanguage();
+// Server component: the footer only renders translated text, links
+// and the newsletter form. The form stays a client island
+// (NewsletterForm), everything else needs no hydration. Locale comes
+// from the app_language cookie, read in the root layout — which makes
+// the layout (and therefore every route) dynamic instead of static.
+// Measured cost locally: warm TTFB ~3ms static vs ~30ms dynamic;
+// the home page was already dynamic, so its TTFB is unchanged.
+export function Footer({ locale }: { locale: Locale }) {
+  const t = (key: string, fallback?: string) => translate(locale, key, fallback);
 
   const navigation = [
     { name: t("footer.product", "Product"), href: "/#feature-modern-teams" },
@@ -54,6 +59,7 @@ export function Footer() {
           {navigation.map((item) => (
             <li key={item.name}>
               <Link
+                prefetch={false}
                 href={item.href}
                 className="font-medium transition-opacity hover:opacity-75"
               >
@@ -64,6 +70,7 @@ export function Footer() {
           {social.map((item) => (
             <li key={item.name}>
               <Link
+                prefetch={false}
                 href={item.href}
                 className="flex items-center gap-0.5 font-medium transition-opacity hover:opacity-75"
               >
@@ -76,6 +83,7 @@ export function Footer() {
           {legal.map((item) => (
             <li key={item.name}>
               <Link
+                prefetch={false}
                 href={item.href}
                 className="text-muted-foreground text-sm transition-opacity hover:opacity-75"
               >

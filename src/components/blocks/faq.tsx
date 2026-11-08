@@ -116,7 +116,11 @@ export const FAQ = ({
                 "faq.contact_prompt",
                 "If you can't find what you're looking for, ",
               )}
-              <Link href="/contact" className="underline underline-offset-4">
+              <Link
+                prefetch={false}
+                href="/contact"
+                className="underline underline-offset-4"
+              >
                 {t("faq.contact_link", "get in touch")}
               </Link>
               .

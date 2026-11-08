@@ -1,5 +1,3 @@
-"use client";
-
 import Image from "next/image";
 
 import {
@@ -12,10 +10,15 @@ import {
 
 import { DashedLine } from "@/components/dashed-line";
 import { Button } from "@/components/ui/button";
-import { useLanguage } from "@/context/language-context";
+import { translate, type Locale } from "@/lib/translations";
 
-export const Hero = () => {
-  const { t } = useLanguage();
+// Server component: the hero is the LCP element, so it must not wait
+// for hydration to render. It only renders translated text, links and
+// the priority hero image — no state, no handlers. Locale comes from
+// the app_language cookie (see page.tsx); the language switcher
+// refreshes the route after changing it.
+export const Hero = ({ locale }: { locale: Locale }) => {
+  const t = (key: string, fallback?: string) => translate(locale, key, fallback);
 
   const features = [
     {
@@ -99,7 +102,12 @@ export const Hero = () => {
             src="/hero.webp"
             alt="Mainline project management dashboard preview"
             fill
-            preload
+            // `preload` is not a next/image prop: the old code produced a
+            // plain preload link with no fetchpriority and no srcset, so
+            // the LCP image was discovered late and at full 2360px width.
+            // `priority` emits a proper high-priority preload with srcset.
+            priority
+            fetchPriority="high"
             sizes="(max-width: 1024px) 100vw, 1220px"
             className="rounded-2xl object-cover object-left-top shadow-lg max-lg:rounded-tr-none"
           />

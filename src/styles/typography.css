@@ -1,0 +1,8 @@
+/* Typography plugin styles, only for the /privacy page.
+   They used to live in globals.css and ship ~19 KB of .prose rules
+   to every page, even though only the privacy MDX uses them.
+   Note: this duplicates Tailwind's base on /privacy only (that page
+   loads the global CSS plus this chunk); the home page — the perf
+   target — no longer pays for prose at all. */
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";

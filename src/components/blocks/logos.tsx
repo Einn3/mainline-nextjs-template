@@ -1,9 +1,7 @@
-"use client";
-
 import Link from "next/link";
 
 import { ProgressiveImage } from "@/components/progressive-image";
-import { useLanguage } from "@/context/language-context";
+import { translate, type Locale } from "@/lib/translations";
 import { cn } from "@/lib/utils";
 
 type Company = {
@@ -14,8 +12,11 @@ type Company = {
   href: string;
 };
 
-export const Logos = () => {
-  const { t } = useLanguage();
+// Server component: no hydration. Translated on the server from
+// the app_language cookie (see page.tsx); the language switcher
+// refreshes the route after changing it.
+export const Logos = ({ locale }: { locale: Locale }) => {
+  const t = (key: string, fallback?: string) => translate(locale, key, fallback);
 
   const topRowCompanies = [
     {

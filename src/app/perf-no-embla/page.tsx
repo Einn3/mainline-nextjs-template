@@ -20,10 +20,10 @@ export default function PerformanceWithoutEmbla() {
   return (
     <>
       <Background className="via-muted to-muted/80">
-        <Hero />
-        <Logos />
-        <Features />
-        <ResourceAllocation />
+        <Hero locale="en" />
+        <Logos locale="en" />
+        <Features locale="en" />
+        <ResourceAllocation locale="en" />
       </Background>
       <Testimonials emblaActive={false} />
       <Background variant="bottom">

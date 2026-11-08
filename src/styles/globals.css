@@ -1,7 +1,6 @@
 @import "tailwindcss";
 
 @import "tw-animate-css";
-@plugin '@tailwindcss/typography';
 
 @variant dark (&:is(.dark *));
 
@@ -197,6 +196,17 @@
   @media (width >= 1400px) {
     max-width: 1220px;
   }
+}
+
+/* Below-fold sections: content-visibility tells the browser to skip
+   layout/paint work for off-screen content until the user scrolls
+   near it. SSR HTML, JS and SEO are unchanged — only the initial
+   style/layout work shrinks, which was eating the LCP render delay.
+   `auto` makes the browser remember each section's real height after
+   its first render, so the 900px estimate only matters off-screen. */
+.below-fold {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 900px;
 }
 
 @layer base {

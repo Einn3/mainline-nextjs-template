@@ -1,5 +1,3 @@
-"use client";
-
 import Link from "next/link";
 
 import { ChevronRight } from "lucide-react";
@@ -8,29 +6,26 @@ import { DashedLine } from "../dashed-line";
 
 import { ProgressiveImage } from "@/components/progressive-image";
 import { Card, CardContent } from "@/components/ui/card";
-import { useLanguage } from "@/context/language-context";
+import { translate, type Locale } from "@/lib/translations";
 
-export const Features = () => {
-  const { t } = useLanguage();
+// Server component: no hydration. Translated on the server from
+// the app_language cookie (see page.tsx); the language switcher
+// refreshes the route after changing it.
+export const Features = ({ locale }: { locale: Locale }) => {
+  const t = (key: string, fallback?: string) => translate(locale, key, fallback);
 
   const items = [
     {
-      title: t(
-        "features.item1",
-        "Purpose-built for product development",
-      ),
-      image: "/features/triage-card.svg",
+      title: t("features.item1", "Purpose-built for product development"),
+      image: "/features/triage-card.webp",
     },
     {
       title: t("features.item2", "Manage projects end-to-end"),
-      image: "/features/cycle-card.svg",
+      image: "/features/cycle-card.webp",
     },
     {
-      title: t(
-        "features.item3",
-        "Build momentum and healthy habits",
-      ),
-      image: "/features/overview-card.svg",
+      title: t("features.item3", "Build momentum and healthy habits"),
+      image: "/features/overview-card.webp",
     },
   ];
 
@@ -75,6 +70,7 @@ export const Features = () => {
                   </div>
 
                   <Link
+                    prefetch={false}
                     href="#"
                     className="group flex items-center justify-between gap-4 pe-4 pt-4 md:pe-6 md:pt-6"
                   >

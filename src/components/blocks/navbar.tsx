@@ -59,7 +59,11 @@ export const Navbar = () => {
       )}
     >
       <div className="flex items-center justify-between px-6 py-3">
-        <Link href="/" className="flex shrink-0 items-center gap-2">
+        <Link
+          prefetch={false}
+          href="/"
+          className="flex shrink-0 items-center gap-2"
+        >
           <Image
             src="/logo.svg"
             alt="logo"
@@ -85,6 +89,7 @@ export const Navbar = () => {
                         <li key={item.title}>
                           <NavigationMenuLink asChild>
                             <Link
+                              prefetch={false}
                               href={item.href}
                               className="group hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground flex items-center gap-4 rounded-md p-3 leading-none no-underline outline-hidden transition-colors select-none"
                             >
@@ -106,6 +111,7 @@ export const Navbar = () => {
               ) : (
                 <NavigationMenuItem key={link.label} className="">
                   <Link
+                    prefetch={false}
                     href={link.href}
                     className={cn(
                       "relative bg-transparent px-1.5 text-sm font-medium transition-opacity hover:opacity-75",
@@ -124,7 +130,7 @@ export const Navbar = () => {
         <div className="flex items-center gap-2">
           <LanguageSwitcher />
           <ThemeToggle />
-          <Link href="/login" className="max-lg:hidden">
+          <Link prefetch={false} href="/login" className="max-lg:hidden">
             <Button variant="outline">
               <span className="relative z-10">{t("nav.login")}</span>
             </Button>
@@ -201,6 +207,7 @@ export const Navbar = () => {
                   <div className="bg-muted/50 space-y-3 rounded-lg p-4">
                     {link.dropdownItems.map((item) => (
                       <Link
+                        prefetch={false}
                         key={item.title}
                         href={item.href}
                         className="group hover:bg-accent block rounded-md p-2 transition-colors"
@@ -225,6 +232,7 @@ export const Navbar = () => {
               </div>
             ) : (
               <Link
+                prefetch={false}
                 key={link.label}
                 href={link.href}
                 className={cn(

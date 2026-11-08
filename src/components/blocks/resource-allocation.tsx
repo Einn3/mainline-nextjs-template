@@ -1,13 +1,14 @@
-"use client";
-
 import { DashedLine } from "../dashed-line";
 
 import { ProgressiveImage } from "@/components/progressive-image";
-import { useLanguage } from "@/context/language-context";
+import { translate, type Locale } from "@/lib/translations";
 import { cn } from "@/lib/utils";
 
-export const ResourceAllocation = () => {
-  const { t } = useLanguage();
+// Server component: no hydration. Translated on the server from
+// the app_language cookie (see page.tsx); the language switcher
+// refreshes the route after changing it.
+export const ResourceAllocation = ({ locale }: { locale: Locale }) => {
+  const t = (key: string, fallback?: string) => translate(locale, key, fallback);
 
   const topItems = [
     {

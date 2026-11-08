@@ -1,5 +1,7 @@
 "use client";
 
+import "@/styles/typography.css";
+
 import Privacy from "./privacy.mdx";
 
 export function PrivacyContent() {
